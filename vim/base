@@ -42,21 +42,6 @@ endif
 
 
 
-""""""""""""""""""""""""""""""""" PLUGINS """""""""""""""""""""""""""""""""""
-call plug#begin(g:_plug_path)
-  
-  " List your plugins here
-  Plug 'tpope/vim-sensible'
-  
-  " Fuzzy finder - 
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'AmberLehmann/candyland.nvim'
-  
-call plug#end()
-
-"comentado pois estamos usando o packer com nvim
-
 
 
 """"""""""""""""""""""""""""Configurações alê """"""""""""""""""""""""""""""
