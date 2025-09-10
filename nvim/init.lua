@@ -1,0 +1,1 @@
+C:/Users/pvp_m/AppData/Local/nvim/init.lua
