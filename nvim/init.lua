@@ -34,8 +34,10 @@ end)
 
 
 
-require("mason").setup()
-require("mason-lspconfig").setup()
+local mason = require("mason")
+mason.setup()
+local masonLspConfig = require("mason-lspconfig")
+masonLspConfig.setup()
 
 
 local opts = { noremap = true, silent = true }
@@ -45,32 +47,6 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
 
-local lspconfig = require('lspconfig')
-lspconfig.ast_grep.setup({})
-lspconfig.ts_ls.setup({})
-lspconfig.rust_analyzer.setup({
-	on_attach = function(client, bufnr)
-		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-	end,
-	settings = {
-		["rust-analyzer"] = {
-			imports = {
-				granularity = {
-					group = "module",
-				},
-				prefix = "self",
-			},
-			cargo = {
-				buildScripts = {
-					enable = true,
-				},
-			},
-			procMacro = {
-				enable = true
-			},
-		}
-	}
-})
 
 local on_attach = function(client, bufnr)
 	local opts_buffer = { noremap = true, silent = true, buffer = bufnr }
@@ -96,20 +72,6 @@ end
 local lsp_flags = {
 	debounce_text_changes = 150,
 }
-
-
-require('lspconfig')['ts_ls'].setup({
-	-- LSP-default-keymaps
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
-
-
-require('lspconfig')['lua_ls'].setup({
-	-- LSP-default-keymaps
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
 
 
 
