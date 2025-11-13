@@ -6,6 +6,9 @@ require('packer').startup(function(use)
 
 	-- Configurações básicas do vim 
 	use 'tpope/vim-sensible'
+	
+	-- Configurações para utilização do emmet dentro do vim
+	use 'mattn/emmet-vim'
 
 
 	-- Configuração LSP
@@ -77,3 +80,4 @@ local lsp_flags = {
 
 --Definição do color scheme pastel
 vim.cmd.colorscheme "candyland"
+

@@ -110,3 +110,4 @@ inoremap ' ''<Left>
 "adição de guias de indentação
 set list
 set listchars+=tab:┊\ 
+
