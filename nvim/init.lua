@@ -33,6 +33,36 @@ require('packer').startup(function(use)
 
 	-- Instalação do esquema de cores pastel
 	use 'AmberLehmann/candyland.nvim'
+
+	use {
+	  "sahilsehwag/macrobank.nvim",
+	  config = function()
+	    require("macrobank").setup({
+		  -- Global store (always read; also the fallback write target)
+		  store_path_global = vim.fn.stdpath('config') .. '~/.config/nvim/macrobank_store.json',
+		
+		  -- Project-local store discovery:
+		  --  - string: override defaults (single relative path, e.g. '.nvim/macrobank.json')
+		  --  - list:   merge with defaults below
+		  --  - first entry is used for creation when no project store exists yet
+		  project_store_paths = nil, -- {'.macrobank.json', '.nvim/macrobank.json'} or '.macrobank.json'
+		
+		  default_select_register = 'q',  -- register to load selected macro into
+		  default_play_register   = 'q',  -- temporary register used to play from bank
+		  nerd_icons = true,              -- use nerdfont icons in UI labels
+		
+		  window = {                     -- editor window dimensions
+		    width  = 0.7,                -- fraction of columns or absolute number
+		    height = 0.7,                -- fraction of lines   or absolute number
+		  },
+		
+		  -- Editor buffer mappings override (optional)
+		  live_editor_mappings = {},      -- override live editor buffer mappings: {action_name = 'keymap' | false}
+		  bank_editor_mappings = {},      -- override bank editor buffer mappings: {action_name = 'keymap' | false}
+		})
+	  end
+	}
+
 end)
 
 
