@@ -69,7 +69,9 @@ set relativenumber "Adiciona numero de linhas relativas no lado esquerdo
 set cursorline "Adiciona marcação da linha atual
 set mouse=a "Adiciona a possibilidade de clicar onde você quer editar
 set nocompatible "Ativa o modo de não-compatibilidade - no geral não é necessário
-let mapleader = ' ' 
+let mapleader = ' ' #bota a tecla leader como espaço
+set ignorecase #ativa a pesquiva como case insensitive
+set smartcase  #caso a pesquisa tenha ao menos 1 caractere maiusculo, ela vira case sensitive
 
 vnoremap  <leader>y  "+y
 vnoremap  <leader>p  "+p
