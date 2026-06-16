@@ -113,3 +113,7 @@ inoremap ' ''<Left>
 set list
 set listchars+=tab:┊\ 
 
+"Criando comando fzf em minusculo 
+cnoreabbrev fzf FZF
+
+
