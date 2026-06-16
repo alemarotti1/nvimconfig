@@ -1,76 +1,47 @@
-vim.cmd('source ~/AppData/Local/nvim/vimrc.vim')
+--vim.cmd('source ~/AppData/Local/nvim/vimrc.vim') -- Use this line if using windows
+vim.cmd('source ~/.config/nvim/vimrc.vim')
 
-require('packer').startup(function(use)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
-
+vim.pack.add({
 	-- Configurações básicas do vim 
-	use 'tpope/vim-sensible'
+	"https://github.com/tpope/vim-sensible",
 	
 	-- Configurações para utilização do emmet dentro do vim
-	use 'mattn/emmet-vim'
+	"https://github.com/mattn/emmet-vim",
 
 
 	-- Configuração LSP
-	use({
-		"mason-org/mason.nvim",
-		"mason-org/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
-	})
+	"https://github.com/mason-org/mason.nvim",
+	"https://github.com/mason-org/mason-lspconfig.nvim",
+	"https://github.com/neovim/nvim-lspconfig",
 
-	-- FuzzyFinder - Plugin para encontrar arquivos d forma fácil
-	use {
-		'junegunn/fzf.vim',
-		requires = { 'junegunn/fzf', run = ':call fzf#install()' }
-	}
+	-- FuzzyFinder - Plugin para encontrar arquivos de forma fácil
+	"https://github.com/junegunn/fzf.vim",
 
 	-- Instalação do Coq, utilizado para completar código
-	use 'ms-jpq/coq_nvim'
-	use 'ms-jpq/coq.artifacts'
-	use 'ms-jpq/coq.thirdparty'
+	"https://github.com/ms-jpq/coq_nvim",
+	"https://github.com/ms-jpq/coq.artifacts",
+	"https://github.com/ms-jpq/coq.thirdparty",
 
+	"https://github.com/sahilsehwag/macrobank.nvim",
 
 
 	-- Instalação do esquema de cores pastel
-	use 'AmberLehmann/candyland.nvim'
+	"https://github.com/AmberLehmann/candyland.nvim"
+})
 
-	use {
-	  "sahilsehwag/macrobank.nvim",
-	  config = function()
-	    require("macrobank").setup({
-		  -- Global store (always read; also the fallback write target)
-		  store_path_global = vim.fn.stdpath('config') .. '~/.config/nvim/macrobank_store.json',
-		
-		  -- Project-local store discovery:
-		  --  - string: override defaults (single relative path, e.g. '.nvim/macrobank.json')
-		  --  - list:   merge with defaults below
-		  --  - first entry is used for creation when no project store exists yet
-		  project_store_paths = nil, -- {'.macrobank.json', '.nvim/macrobank.json'} or '.macrobank.json'
-		
-		  default_select_register = 'q',  -- register to load selected macro into
-		  default_play_register   = 'q',  -- temporary register used to play from bank
-		  nerd_icons = true,              -- use nerdfont icons in UI labels
-		
-		  window = {                     -- editor window dimensions
-		    width  = 0.7,                -- fraction of columns or absolute number
-		    height = 0.7,                -- fraction of lines   or absolute number
-		  },
-		
-		  -- Editor buffer mappings override (optional)
-		  live_editor_mappings = {},      -- override live editor buffer mappings: {action_name = 'keymap' | false}
-		  bank_editor_mappings = {},      -- override bank editor buffer mappings: {action_name = 'keymap' | false}
-		})
-	  end
-	}
-
-end)
-
+local macrobank = require("macrobank")
+macrobank.setup()
 
 
 local mason = require("mason")
 mason.setup()
 local masonLspConfig = require("mason-lspconfig")
-masonLspConfig.setup()
+masonLspConfig.setup({
+	store_path_global = vim.fn.stdpath('config') .. '/macrobank_store.json',
+	project_store_paths = nil,
+
+
+})
 
 
 local opts = { noremap = true, silent = true }
@@ -110,4 +81,3 @@ local lsp_flags = {
 
 --Definição do color scheme pastel
 vim.cmd.colorscheme "candyland"
-
