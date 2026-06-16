@@ -22,7 +22,11 @@ vim.pack.add({
 	"https://github.com/ms-jpq/coq.artifacts",
 	"https://github.com/ms-jpq/coq.thirdparty",
 
+	--Plugin que gerencia macros
 	"https://github.com/sahilsehwag/macrobank.nvim",
+
+	--plugin para animações
+	"https://github.com/nvim-mini/mini.animate",
 
 
 	-- Instalação do esquema de cores pastel
@@ -32,6 +36,8 @@ vim.pack.add({
 local macrobank = require("macrobank")
 macrobank.setup()
 
+local animate = require("mini.animate")
+animate.setup()
 
 local mason = require("mason")
 mason.setup()
